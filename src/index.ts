@@ -1,9 +1,23 @@
 import "dotenv/config";
-import { bedrockLLM } from "./llm/bedrock.js";
+import { buildGraph } from "./graph.js";
+import { printStep, promptUser } from "./io/terminal.js";
+import { AgentState } from "./state.js";
 
-const response = await bedrockLLM.invoke([
-  ["system", "You are a helpful assistant"],
-  ["human", "Say hello in one short sentence"],
-]);
+printStep("Invoice Triage Agent");
 
-console.log(response.content);
+const rawText = await promptUser(
+  "Paste the invoice text (single line is fine): ",
+);
+
+const initialState: AgentState = {
+  rawText,
+  extracted: null,
+  missingFields: [],
+  categorySuggestion: null,
+  lastQuestion: null,
+  errors: [],
+  stepCount: 0,
+};
+
+const graph = buildGraph();
+await graph.invoke(initialState);
