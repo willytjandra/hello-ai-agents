@@ -1,15 +1,15 @@
 {
   "name": "hello-ai-agents",
   "version": "1.0.0",
-  "description": "",
+  "description": "Terminal-based AI Agent using LangGraph + Bedrock",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@types/node": "^25.3.0",
     "tsx": "^4.21.0",
@@ -19,6 +19,7 @@
     "@langchain/aws": "^1.2.5",
     "@langchain/core": "^1.1.28",
     "@langchain/langgraph": "^1.1.5",
+    "dotenv": "^17.3.1",
     "zod": "^4.3.6"
   }
 }
